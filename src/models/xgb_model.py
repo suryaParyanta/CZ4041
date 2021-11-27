@@ -23,12 +23,11 @@ def train_xgboost(X_train, X_test, num_ensembles=5):
     xgb_params = {'gpu_id':0, # delete if not using gpu
                 'tree_method':'gpu_hist', # change to hist if not using gpu
                 'min_child_weight': 5, 
-                'eta': 0.035, 
-                'colsample_bytree': 0.5, 
+                'eta': 0.02, 
+                'colsample_bytree': 0.6, 
                 'max_depth': 4,
-                'subsample': 0.85, 
+                'subsample': 0.8, 
                 'lambda': 0.8,
-                'alpha': 0.3,
                 'nthread': -1, 
                 'booster' : 'gbtree', 
                 'silent': 1,

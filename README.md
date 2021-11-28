@@ -46,3 +46,7 @@ You can also run another files: ```xgb_model.py``` and ```catboost_model.py``` b
 1. To understand the dataset deeply, our group perform feature engineering, and find the importance of each feature from the original dataset, perform some modification (i.e., dataset cleaning, data imputation, additional features). This step is very important throughout the project to find important observation or patterns.
 
 2. Train the models using the pre-processed data
+
+## Video
+
+Our project video can be found on this [link](https://youtu.be/Rx7wYivSLV8).

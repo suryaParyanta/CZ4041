@@ -35,9 +35,12 @@ src/models/model_ensemble.py -> Ensemble Learning (using both XGBoost and CatBoo
 ```bash
 python model_ensemble.py
 ```
+You can also run another files: ```xgb_model.py``` and ```catboost_model.py``` by executing similar commands.
 5. The .csv submission file will be generated inside ```submission/```
 
 ## Steps Taken
 1. To understand the dataset deeply, our group perform feature engineering, and find the importance of each feature from the original dataset, perform some modification (i.e., dataset cleaning, data imputation, additional features). This step is very important throughout the project to find important observation or patterns.
 
 2. Train the models using the pre-processed data
+
+3. Repeat steps 1 and 2 until we reached the deadline.

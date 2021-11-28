@@ -29,13 +29,17 @@ src/models/model_ensemble.py -> Ensemble Learning (using both XGBoost and CatBoo
 ## Getting Started
 
 1. Download the Zillow Prize dataset from Kaggle (can be found on this [link](https://www.kaggle.com/c/zillow-prize-1/data))
+
 2. Create new directory path ```dataset/raw/``` and place all dataset files in that directory.
-3. Run ```notebooks/explanatory_data_analysis.ipynb``` twice (```CURR_YEAR = 2016``` and ```CURR_YEAR = 2017```)
+
+3. Run the whole notebook file ```notebooks/explanatory_data_analysis.ipynb``` twice (```CURR_YEAR = 2016``` and ```CURR_YEAR = 2017```)
+
 4. Run ```model_ensemble.py``` by executing following command:
 ```bash
 python model_ensemble.py
 ```
 You can also run another files: ```xgb_model.py``` and ```catboost_model.py``` by executing similar commands.
+
 5. The .csv submission file will be generated inside ```submission/```
 
 ## Steps Taken

@@ -1,5 +1,5 @@
+*.csv
+*.ods
 notebooks/.ipynb_checkpoints/
-dataset/
-submission/
 src/models/catboost_info/
 src/models/__pycache__/

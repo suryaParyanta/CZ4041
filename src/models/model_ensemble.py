@@ -3,16 +3,20 @@ import gc
 from catboost_model import train_catboost
 from xgb_model import train_xgboost
 
+'''
+This file is used to run the model ensemble between catboost and xgboost model. 
+'''
+
 if __name__ == '__main__':
-    # train 2016
-    X_train = pd.read_csv('../../dataset/processed/train_data.csv')
-    X_test = pd.read_csv('../../dataset/processed/test_data.csv')
+    # train on 2016 data
+    train_2016 = pd.read_csv('../../dataset/processed/train_data.csv')
+    test_2016 = pd.read_csv('../../dataset/processed/test_data.csv')
 
     print("Training XGBoost Model ...")
-    xgb_predictions = train_xgboost(X_train, X_test)
+    xgb_predictions = train_xgboost(train_2016, test_2016)
 
     print("Training CatBoost Model ...")
-    catboost_predictions = train_catboost(X_train, X_test)
+    catboost_predictions = train_catboost(train_2016, test_2016)
 
     final_predictions_2016 = 0.8 * catboost_predictions + 0.2 * xgb_predictions
 
@@ -21,25 +25,23 @@ if __name__ == '__main__':
         if '2016' in c:
             sample_file[c] = final_predictions_2016
 
-    # free up memory
-    del X_test
+    del test_2016
     gc.collect();
 
-    # train 2017
-    X_train_2017 = pd.read_csv('../../dataset/processed/train_data_2017.csv')
-    X_test_2017 = pd.read_csv('../../dataset/processed/test_data_2017.csv')
+    # train on 2017 data
+    train_2017 = pd.read_csv('../../dataset/processed/train_data_2017.csv')
+    test_2017 = pd.read_csv('../../dataset/processed/test_data_2017.csv')
 
-    # Combine train dataset
-    final_train = pd.concat([X_train, X_train_2017])
+    final_train = pd.concat([train_2016, train_2017])
 
-    del X_train_2017, X_train
+    del train_2016, train_2017
     gc.collect();
 
     print("Training XGBoost Model ...")
-    xgb_predictions = train_xgboost(final_train, X_test_2017)
+    xgb_predictions = train_xgboost(final_train, test_2017)
 
     print("Training CatBoost Model ...")
-    catboost_predictions = train_catboost(final_train, X_test_2017)
+    catboost_predictions = train_catboost(final_train, test_2017)
 
     final_predictions_2017 = 0.8 * catboost_predictions + 0.2 * xgb_predictions
     

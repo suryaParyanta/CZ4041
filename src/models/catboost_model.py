@@ -3,7 +3,7 @@ import pandas as pd
 from catboost import CatBoostRegressor
 
 
-def train_catboost(train_data, test_data, num_ensembles=5):
+def train_catboost(train_data, test_data, num_ensembles : int = 5):
     '''
     Train the data using catboost model
 
@@ -15,6 +15,7 @@ def train_catboost(train_data, test_data, num_ensembles=5):
     train_data = train_data.drop(['logerror'], axis=1)
     train_features = train_data.columns
 
+    # determine features that are considered as categorical variables
     cat_feature_idx = []
     unique_thresh = 1000
     for i, c in enumerate(train_features):
@@ -24,6 +25,7 @@ def train_catboost(train_data, test_data, num_ensembles=5):
             test_data[c] = test_data[c].astype(int)
             cat_feature_idx.append(i)
 
+    # train the model
     predictions = 0
     for i in range(num_ensembles):
         model = CatBoostRegressor(iterations=630, 

@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 
-def train_xgboost(train_data, test_data, num_ensembles=5):
+def train_xgboost(train_data, test_data, num_ensembles : int = 5):
     '''
     Train the data using xgboose model.
 
@@ -12,6 +12,7 @@ def train_xgboost(train_data, test_data, num_ensembles=5):
     :param test_data:     Test dataset (in pandas.DataFrame), only consists of set of features
     :param num_ensembles: How many catboost model to ensemble
     '''
+
     # remove outliers
     log_errors = train_data['logerror']
     train_data = train_data[train_data['logerror'] < np.percentile(log_errors, 99.5)]
@@ -27,6 +28,7 @@ def train_xgboost(train_data, test_data, num_ensembles=5):
     dvalid = xgb.DMatrix(Xvalid, label=yvalid)
     dtest = xgb.DMatrix(train_data.values)
 
+    # train the model
     xgb_params = {'gpu_id':0, # delete if not using gpu
                 'tree_method':'gpu_hist', # change to hist if not using gpu
                 'min_child_weight': 5, 

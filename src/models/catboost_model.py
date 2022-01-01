@@ -26,7 +26,7 @@ def train_catboost(train_data, test_data, num_ensembles : int = 5):
             cat_feature_idx.append(i)
 
     # train the model
-    predictions = 0
+    predictions = np.zeros(test_data.shape[0])
     for i in range(num_ensembles):
         model = CatBoostRegressor(iterations=630, 
                                 learning_rate=0.033,
@@ -56,4 +56,4 @@ if __name__ == '__main__':
 
     print('Preparing the csv file ...')
     sample_file.to_csv('../../submission/catboost_prediction.csv', index=False, float_format='%.4f')
-    print("Finished writing the file")
+    print('Finished writing the file')

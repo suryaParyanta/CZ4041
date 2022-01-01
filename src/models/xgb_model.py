@@ -26,7 +26,7 @@ def train_xgboost(train_data, test_data, num_ensembles : int = 5):
 
     dtrain = xgb.DMatrix(Xtrain, label=ytrain)
     dvalid = xgb.DMatrix(Xvalid, label=yvalid)
-    dtest = xgb.DMatrix(train_data.values)
+    dtest = xgb.DMatrix(test_data.values)
 
     # train the model
     xgb_params = {'gpu_id':0, # delete if not using gpu
@@ -72,4 +72,4 @@ if __name__ == '__main__':
 
     print('Preparing the csv file ...')
     sample_file.to_csv('../../submission/xgb_prediction.csv', index=False, float_format='%.4f')
-    print("Finished writing the file")
+    print('Finished writing the file')
